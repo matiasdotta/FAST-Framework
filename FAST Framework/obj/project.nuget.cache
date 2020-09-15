@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "BFt8w0Mu9UjGrfrcqlVDkQTdKD4J1DT1tghqTJa00Vtvp8RFkDQhUhLvcQKnoItPIBqRUMS+WmQeZ57y4PNWzg==",
+  "dgSpecHash": "HsrGdzoGmlZKnJlPtWmiVaMVatcnS7bCRbCAqurWHT3J4OyUvk8kv0i8f352gmfhrl3nPn787e9d8pstxFYmdQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\OwO\\source\\repos\\FAST Framework\\FAST Framework\\FAST Framework.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\OwO\\.nuget\\packages\\appium.webdriver\\4.1.1\\appium.webdriver.4.1.1.nupkg.sha512",
     "C:\\Users\\OwO\\.nuget\\packages\\castle.core\\4.3.1\\castle.core.4.3.1.nupkg.sha512",
     "C:\\Users\\OwO\\.nuget\\packages\\dotnetseleniumextras.pageobjects\\3.11.0\\dotnetseleniumextras.pageobjects.3.11.0.nupkg.sha512",
+    "C:\\Users\\OwO\\.nuget\\packages\\exceldatareader\\3.6.0\\exceldatareader.3.6.0.nupkg.sha512",
+    "C:\\Users\\OwO\\.nuget\\packages\\exceldatareader.dataset\\3.6.0\\exceldatareader.dataset.3.6.0.nupkg.sha512",
     "C:\\Users\\OwO\\.nuget\\packages\\microsoft.codecoverage\\16.4.0\\microsoft.codecoverage.16.4.0.nupkg.sha512",
     "C:\\Users\\OwO\\.nuget\\packages\\microsoft.dotnet.internalabstractions\\1.0.0\\microsoft.dotnet.internalabstractions.1.0.0.nupkg.sha512",
     "C:\\Users\\OwO\\.nuget\\packages\\microsoft.net.test.sdk\\16.4.0\\microsoft.net.test.sdk.16.4.0.nupkg.sha512",

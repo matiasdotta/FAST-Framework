@@ -4,6 +4,7 @@ using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Data;
 using System.Diagnostics;
@@ -13,23 +14,23 @@ namespace FAST_Framework
 {
     public static class Driver
     {
-        static WindowsDriver<WindowsElement> driver = null;
-
+        static WindowsDriver<WindowsElement> driver;
+        static WebDriverWait wait = null;
         //Initialize driver using program path
         public static void InitializeDriver()
         {
-            driver = GetDriver();
-            if (driver != null) driver.Quit();
             System.Diagnostics.Process.Start(@"C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe");
             AppiumOptions capabilities = new AppiumOptions();
             capabilities.AddAdditionalCapability("app", @"C:\Program Files (x86)\DSI\Mobile Client\DSI.MobileClient.PC.exe");
             capabilities.AddAdditionalCapability("deviceName", "WindowsPC");
             driver = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), capabilities);
+          //  wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+            return;
+
         }
         //initialize driver using window handle
         public static void InitializeDriver(String WindowHandle)
         {
-            
             AppiumOptions capabilities = new AppiumOptions();
             capabilities.AddAdditionalCapability("appTopLevelWindow", WindowHandle);
             driver = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), capabilities);
@@ -51,7 +52,12 @@ namespace FAST_Framework
         {
             return driver;
         }
-    }
 
-   
+        public static WebDriverWait NewWait(int time)
+        {
+            TimeSpan timespan = new TimeSpan(0, 0, time);
+            wait = new WebDriverWait(driver,timespan);
+            return wait;
+        }
+    }   
 }
