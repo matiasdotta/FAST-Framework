@@ -10,11 +10,15 @@ namespace FAST_Framework
     public static class Methods
     {
         public static WindowsDriver<WindowsElement> driver = Driver.GetDriver();
-        //public static WebDriverWait wait = Driver.GetWait();
 
+        #region MC controls
+        /// <summary>
+        /// Starts Mobile Client with Windows Driver and logs into user account
+        /// </summary>
+        /// <param name="config">Set the config values (LocaldeviceName, driverPath, MCPath, MCProcName, userName, password) before runing this method</param>
         public static void OpenMobileClient(Config config)
         {
-            Driver.InitializeDriver();
+            Driver.InitializeDriver(config);
             WindowsDriver<WindowsElement> driver = Driver.GetDriver();
             driver.Manage().Timeouts().ImplicitWait = new TimeSpan(20);
             var login = driver.FindElementByAccessibilityId("loginId");
@@ -25,21 +29,22 @@ namespace FAST_Framework
             pass.SendKeys(config.password);
             button.SendKeys(Keys.Enter);
             return;
-
-            //to change env
-            //var devEnv = driver.FindElementByName("Dev");
-            //devEnv.Click();
-            // Methods.ClickButtonByClass("Button", "OK");
-            //Thread.Sleep(1000);
         }
 
+        public static void ChangeMCConfig()
+        {
+
+        }
+        /// <summary>
+        /// Once logged into MC, looks for an app that contains the parameter passed and opens the first element found
+        /// 
+        /// </summary>
+        /// <param name="appName">Name or part of the name of the application</param>
         public static void OpenApp(string appName)
         {
             driver.Manage().Timeouts().ImplicitWait = new TimeSpan(25);
             try
             {
-                //wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName("AppMenuHeader")));
-                //driver = Driver.ResetDriverUsingWindowHandler();
                 driver.SwitchTo().Window(driver.WindowHandles[0]);
                 var apps = driver.FindElementsByClassName("ListBoxItem");
                 foreach (var app in apps)
@@ -58,26 +63,15 @@ namespace FAST_Framework
                 throw;
             }
         }
+        #endregion
 
-        public static void ExitApplication()
-        {
-            OpenMenu();
-            ClickButtonByClass("Button", "Exit");
-            return;
-        }
-
-        public static void Cancel()
-        {
-            OpenMenu();
-            ClickButtonByClass("Button", "Cancel");
-            return;
-        }
-
+        #region App controls
+        #region Button interactions
         /// <summary>
-        /// Search Button name on array of buttons displayed
+        /// Looks for a substring containing the name passed and returns the first element of the class with that condition
         /// </summary>
-        /// <param name="className"></param>
-        /// <param name="buttonText"></param>
+        /// <param name="className">Class name from the inspector</param>
+        /// <param name="buttonText">Text displayed on screen</param>
         public static void ClickButtonByClass(String className, string buttonText)
         {
             Thread.Sleep(7000);
@@ -95,12 +89,69 @@ namespace FAST_Framework
             }
             catch (Exception)
             {
-
                 throw;
             }
-
         }
-        #region Controls
+        /// <summary>
+        /// Click on an image button by its name
+        /// </summary>
+        /// <param name="name"></param>
+        public static void ClickImageButton(string name)
+        {
+            driver.Manage().Timeouts().ImplicitWait = new TimeSpan(15);
+            var images = driver.FindElementsByClassName("Image");
+            foreach (var image in images)
+            {
+                if (image.Text.Contains(name))
+                {
+                    image.Click();
+                }
+            }
+            return;
+        }
+        /// <summary>
+        /// Opens FAST options Menu
+        /// </summary>
+        public static void OpenMenu()
+        {
+            driver.Manage().Timeouts().ImplicitWait = new TimeSpan(15);
+            var images = driver.FindElementsByAccessibilityId("imgMenu");
+            foreach (var image in images)
+            {
+                if (image.Text.Contains("Menu"))
+                {
+                    image.Click();
+                }
+            }
+            return;
+        }
+        
+        /// <summary>
+        /// Combination of methods to exit the application.
+        /// </summary>
+        public static void ExitApplication()
+        {
+            OpenMenu();
+            ClickButtonByClass("Button", "Exit");
+            return;
+        }
+        /// <summary>
+        /// Combination of methods to press cancer on current screen
+        /// </summary>
+        public static void Cancel()
+        {
+            OpenMenu();
+            ClickButtonByClass("Button", "Cancel");
+            return;
+        }
+        #endregion
+        #region Text Interactions
+        /// <summary>
+        /// Imput text on prompt elements
+        /// </summary>
+        /// <param name="text">Input string</param>
+        /// <param name="sendEnter">Press enter key after imput</param>
+        /// <param name="texboxId">Text box automation ID from inspector</param>
         public static void EnterTextValue(string text, bool sendEnter, string texboxId = "txtPromptText")
         {
             driver.Manage().Timeouts().ImplicitWait = new TimeSpan(25);
@@ -126,58 +177,21 @@ namespace FAST_Framework
                 }
             }
         }
-        public static void ClickListItemByPos(int n)
-        {
-            Thread.Sleep(10000);
-            var ListItems = driver.FindElementsByClassName("ListViewItem");
-            ListItems[n].Click();
-            return;
-        }
-
-        public static void ClickListItemByName(string name)
-        {
-            Thread.Sleep(8000);
-            var ListItem = driver.FindElementByName(name);
-            ListItem.Click();
-            return;
-            
-        }
-
-        public static void ClickImageButton(string name)
-        {
-            driver.Manage().Timeouts().ImplicitWait = new TimeSpan(15);
-            var images = driver.FindElementsByClassName("Image");
-            foreach (var image in images)
-            {
-                if (image.Text.Contains(name))
-                {
-                    image.Click();
-                }
-            }
-            return;
-        }
-
-        public static void OpenMenu()
-        {
-            driver.Manage().Timeouts().ImplicitWait = new TimeSpan(15);
-            var images = driver.FindElementsByAccessibilityId("imgMenu");
-            foreach (var image in images)
-            {
-                if (image.Text.Contains("Menu"))
-                {
-                    image.Click();
-                }
-            }
-            return;
-        }
-
+        /// <summary>
+        /// Get the text displayed on a "Display Message" Form
+        /// </summary>
+        /// <returns></returns>
         public static string GetDisplayMessage()
         {
             driver.Manage().Timeouts().ImplicitWait = new TimeSpan(15);
             var message = driver.FindElementByAccessibilityId("lblTransitionLabel");
             return message.Text.ToString();
         }
-
+        /// <summary>
+        /// Get the text from a field on a "Display Info" form
+        /// </summary>
+        /// <param name="field">Screen text for the field that we want to extract the value (i.e. "Item Number: ")</param>
+        /// <returns></returns>
         public static string GetValueFor(string field)
         {
             Thread.Sleep(3000);
@@ -187,9 +201,33 @@ namespace FAST_Framework
             return value;
         }
         #endregion
+        #region list interactions
+        /// <summary>
+        /// Gets an array of "ListView" elements and selects the one in the possition specified
+        /// </summary>
+        /// <param name="n">position of element</param>
+        public static void ClickListItemByPos(int n)
+        {
+            Thread.Sleep(10000);
+            var ListItems = driver.FindElementsByClassName("ListViewItem");
+            ListItems[n].Click();
+            return;
+        }
+        /// <summary>
+        /// CLick a list item based on its name
+        /// </summary>
+        /// <param name="name">Name value from inspector</param>
+        public static void ClickListItemByName(string name)
+        {
+            Thread.Sleep(8000);
+            var ListItem = driver.FindElementByName(name);
+            ListItem.Click();
+            return;
+            
+        }
+        #endregion
+        #endregion
     }
-
-
 
 }
 

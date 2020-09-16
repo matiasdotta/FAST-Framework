@@ -6,26 +6,27 @@ namespace FAST_Framework
 {
     public class Config
     {
+        public string LocaldeviceName { get; set; }
+        #region File paths
         public string MCPath { get; set; }
         public string MCProcName { get; set; }
         public string XLPath { get; set; }
+        public string driverPath { get; set; }
+        #endregion
+        #region MC credentials
         public string userName { get; set; }
         public string password { get; set; }
-        //public static string MCPath = @"C:\Program Files (x86)\DSI\Mobile Client\DSI.MobileClient.PC.exe";
-        //public static string MCProcName = "DSI.MobileClient.PC";
-        //public static string XLPath = @"C:\Users\OwO\source\repos\FAST Framework\FAST Framework\TestCases.XLSX";
-        public static class Credentials
-        {
-
-            public static class Valid
-            {
-                //public static string Username = "matias.dotta@ARCHROCK.com";
-                //public static string Password = "1Password!";
-                
-
-            }
-
-        }
+        #endregion
+        #region MC config
+        public string deviceId { get; set; }
+        public string hostAddress { get; set; }
+        public string port { get; set; }
+        public string httpPort { get; set; }
+        public string responseTimeout { get; set; }
+        public string commsTimeout { get; set; }
+        public bool useHttps { get; set; }
+        public bool communicationsActive { get; set; }
+        #endregion
 
     }
 }

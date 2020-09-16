@@ -16,17 +16,17 @@ namespace FAST_Framework
     {
         static WindowsDriver<WindowsElement> driver;
         static WebDriverWait wait = null;
-        //Initialize driver using program path
-        public static void InitializeDriver()
+        /// <summary>
+        /// Initialize driver using program path
+        /// </summary>
+        public static void InitializeDriver(Config config)
         {
-            System.Diagnostics.Process.Start(@"C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe");
+            System.Diagnostics.Process.Start(config.driverPath);
             AppiumOptions capabilities = new AppiumOptions();
-            capabilities.AddAdditionalCapability("app", @"C:\Program Files (x86)\DSI\Mobile Client\DSI.MobileClient.PC.exe");
-            capabilities.AddAdditionalCapability("deviceName", "WindowsPC");
+            capabilities.AddAdditionalCapability("app", config.MCPath);
+            capabilities.AddAdditionalCapability("deviceName", config.LocaldeviceName);
             driver = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), capabilities);
-          //  wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
             return;
-
         }
         //initialize driver using window handle
         public static void InitializeDriver(String WindowHandle)

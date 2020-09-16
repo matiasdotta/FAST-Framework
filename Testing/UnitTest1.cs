@@ -14,11 +14,13 @@ namespace Testing
         [SetUp]
         public void Setup()
         {
+            _config.LocaldeviceName = "WindowsPC";
+            _config.driverPath = @"C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe";
             _config.MCPath = @"C:\Program Files (x86)\DSI\Mobile Client\DSI.MobileClient.PC.exe";
             _config.MCProcName = "DSI.MobileClient.PC";
             _config.XLPath = @"C:\Users\OwO\source\repos\FAST Framework\FAST Framework\TestCases.XLSX";
             _config.userName = "matias.dotta@ARCHROCK.com";
-            _config.password = "1Password!";
+            _config.password = "1Password!"; 
 
         }
 
