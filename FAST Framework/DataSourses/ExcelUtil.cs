@@ -11,8 +11,8 @@ namespace FAST_Framework
     {
 
         public static List<Datacollection> dataCol = new List<Datacollection>();
-        private static int numberOfRows = 0;
-        private static int numberOfTests = 0;
+        public static int numberOfRows = 0;
+        public static int numberOfTests = 0;
 
         public static DataTable ExcelToDataTable(string fileName)
         {
@@ -82,9 +82,6 @@ namespace FAST_Framework
         {
             int maxRow = 0;
 
-            if (numberOfRows > 0)
-                return numberOfRows;
-
             foreach (var dc in dataCol)
             {
                 if (dc.rowNumber > maxRow)
@@ -97,9 +94,6 @@ namespace FAST_Framework
 
         public static int GetNumberOfTests()
         {
-
-            if (numberOfTests > 0)
-                return numberOfTests;
 
             for (int i = 1; i < dataCol.Count; i++)
             {
@@ -119,7 +113,7 @@ namespace FAST_Framework
             for (int i = 1; i <= numberOfRows; i++)
             {
                 testValues[i-1] = (ReadData(i, testName));
-                Console.WriteLine(testValues[i - 1]);
+                //Console.WriteLine(testValues[i - 1]);
             }
 
             return new TestCase(testName, testValues);
