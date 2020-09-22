@@ -41,5 +41,14 @@ namespace FAST_Framework.Forms
             Methods.ClickButtonByClass("Button", button);
             return;          
         }
+        public static void ImputMultipleLines(List<string> list)
+        {
+            var lines = list.ToArray();
+            foreach (var line in lines)
+            {
+                Methods.EnterTextValue(line, true, "txtPromptText");
+            }
+            return;
+        }
     }
 }

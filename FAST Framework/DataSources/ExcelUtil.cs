@@ -16,7 +16,8 @@ namespace FAST_Framework
 
         public static DataTable ExcelToDataTable(string fileName)
         {
-            using (var stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
+            using (
+                var stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
             {
                 using (var reader = ExcelReaderFactory.CreateReader(stream))
                 {
@@ -97,7 +98,7 @@ namespace FAST_Framework
 
             for (int i = 1; i < dataCol.Count; i++)
             {
-                if (!(dataCol[i].colValue.Contains("Test")))
+                if (!(dataCol[i].colName.Contains("Test")))
                     return i-1;
             }
 

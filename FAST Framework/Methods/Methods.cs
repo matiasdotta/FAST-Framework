@@ -12,6 +12,8 @@ namespace FAST_Framework
         public static WindowsDriver<WindowsElement> driver = Driver.GetDriver();
 
         #region MC controls
+
+       
         /// <summary>
         /// Starts Mobile Client with Windows Driver and logs into user account
         /// </summary>
@@ -19,8 +21,10 @@ namespace FAST_Framework
         public static void OpenMobileClient(Config config)
         {
             Driver.InitializeDriver(config);
-            WindowsDriver<WindowsElement> driver = Driver.GetDriver();
-            driver.Manage().Timeouts().ImplicitWait = new TimeSpan(20);
+            Login(config);
+        }
+        public static void Login(Config config) {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
             var login = driver.FindElementByAccessibilityId("loginId");
             var pass = driver.FindElementByAccessibilityId("password");
             var button = driver.FindElementByAccessibilityId("OK");
@@ -42,7 +46,7 @@ namespace FAST_Framework
         /// <param name="appName">Name or part of the name of the application</param>
         public static void OpenApp(string appName)
         {
-            driver.Manage().Timeouts().ImplicitWait = new TimeSpan(25);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
             try
             {
                 driver.SwitchTo().Window(driver.WindowHandles[0]);
@@ -74,7 +78,8 @@ namespace FAST_Framework
         /// <param name="buttonText">Text displayed on screen</param>
         public static void ClickButtonByClass(String className, string buttonText)
         {
-            Thread.Sleep(7000);
+            driver.SwitchTo().Window(driver.WindowHandles[0]);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
             try
             {
                 var buttons = driver.FindElementsByClassName(className);
@@ -98,7 +103,7 @@ namespace FAST_Framework
         /// <param name="name"></param>
         public static void ClickImageButton(string name)
         {
-            driver.Manage().Timeouts().ImplicitWait = new TimeSpan(15);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
             var images = driver.FindElementsByClassName("Image");
             foreach (var image in images)
             {
@@ -122,8 +127,9 @@ namespace FAST_Framework
                 {
                     image.Click();
                 }
+                return;
             }
-            return;
+            
         }
         
         /// <summary>
@@ -132,7 +138,7 @@ namespace FAST_Framework
         public static void ExitApplication()
         {
             OpenMenu();
-            ClickButtonByClass("Button", "Exit");
+            ClickButtonByClass("Button", "Exit Transaction");
             return;
         }
         /// <summary>
@@ -154,7 +160,7 @@ namespace FAST_Framework
         /// <param name="texboxId">Text box automation ID from inspector</param>
         public static void EnterTextValue(string text, bool sendEnter, string texboxId = "txtPromptText")
         {
-            driver.Manage().Timeouts().ImplicitWait = new TimeSpan(25);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             var textBox = driver.FindElementByAccessibilityId(texboxId);
             if (text == "")
             {
@@ -183,7 +189,7 @@ namespace FAST_Framework
         /// <returns></returns>
         public static string GetDisplayMessage()
         {
-            driver.Manage().Timeouts().ImplicitWait = new TimeSpan(15);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
             var message = driver.FindElementByAccessibilityId("lblTransitionLabel");
             return message.Text.ToString();
         }
@@ -194,7 +200,7 @@ namespace FAST_Framework
         /// <returns></returns>
         public static string GetValueFor(string field)
         {
-            Thread.Sleep(3000);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
             var displayedInfo = driver.FindElementByAccessibilityId("lblInfo");
             var value = displayedInfo.Text.Split(field)[1];
             value = value.Split('\r')[0];
@@ -208,7 +214,7 @@ namespace FAST_Framework
         /// <param name="n">position of element</param>
         public static void ClickListItemByPos(int n)
         {
-            Thread.Sleep(10000);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
             var ListItems = driver.FindElementsByClassName("ListViewItem");
             ListItems[n].Click();
             return;
@@ -219,7 +225,7 @@ namespace FAST_Framework
         /// <param name="name">Name value from inspector</param>
         public static void ClickListItemByName(string name)
         {
-            Thread.Sleep(8000);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
             var ListItem = driver.FindElementByName(name);
             ListItem.Click();
             return;
@@ -240,37 +246,6 @@ namespace FAST_Framework
 
 
 /*
-
-/// </summary>
-/// <param name="text"></param>
-/// <param name="sendEnter"></param>
-/// <param name="texboxId"></param>
-public static void EnterTextValue(string text, bool sendEnter = true, string texboxId = "txtPromptText")
-{
-    OpenQA.Selenium.Interactions.Actions action = new OpenQA.Selenium.Interactions.Actions(session);
-
-    if (text == "")
-    {
-        action.SendKeys(Keys.Enter).Perform();
-    }
-    else
-    {
-        if (sendEnter)
-        {
-            action.SendKeys(Keys.Delete).Perform();
-            ActivityCI.Sleep(500);
-            session.FindElementByAccessibilityId(texboxId).SendKeys(text);
-            ActivityCI.Sleep(500);
-            action.SendKeys(Keys.Enter).Perform();
-        }
-        else
-        {
-            action.SendKeys(Keys.Delete).Perform();
-            ActivityCI.Sleep(100);
-            session.FindElementByAccessibilityId(texboxId).SendKeys(text);
-        }
-    }
-}
 
 /// <summary>
 /// Clears any text in an input field and presses enter
@@ -375,18 +350,6 @@ public static void ClickButton(string buttonText, string className = "ButtonAppC
     ActivityCI.Sleep(500);
 }
 
-/// <summary>
-/// click the privacy accept button
-/// </summary>
-public static void ClickAcceptButton()
-{
-    try
-    {
-        var button = session.FindElementByAccessibilityId("Accept");
-        button.Click();
-    }
-    catch { }
-}
 
 /// <summary>
 /// click a button
@@ -454,9 +417,9 @@ public static void ClickButtonById(string Id)
 /// <summary>
 /// click a button
 /// </summary>
-public static void ClickOptionMenu(string buttonText)
+public static void ClickOption43(string buttonText)
 {
-    // open menu options first            
+    // open 8 options first            
     var images = session.FindElementsByAccessibilityId("imgMenu");
     images[0].Click();
 

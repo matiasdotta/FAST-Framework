@@ -4,13 +4,16 @@ using NUnit.Framework;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 using System;
+using System.Text;
 using System.Threading;
+using Testing.Apps;
 
 namespace Testing
 {
     public class Tests
     {
         private Config _config = new Config();
+        private static WindowsDriver<WindowsElement> driver = Driver.GetDriver();
         [SetUp]
         public void Setup()
         {
@@ -18,9 +21,12 @@ namespace Testing
             _config.driverPath = @"C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe";
             _config.MCPath = @"C:\Program Files (x86)\DSI\Mobile Client\DSI.MobileClient.PC.exe";
             _config.MCProcName = "DSI.MobileClient.PC";
-            _config.XLPath = @"C:\Users\OwO\source\repos\FAST Framework\FAST Framework\TestCases.XLSX";
-            _config.userName = "matias.dotta@ARCHROCK.com";
-            _config.password = "1Password!"; 
+            _config.XLPath = @"..\..\..\TestCases.xlsx";
+            _config.userName = "matias.dotta@ocloud.com";
+            _config.password = "1Password!";
+            Methods.OpenMobileClient(_config);
+            Methods.OpenApp("FAST Automation");
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
         }
 
@@ -31,20 +37,15 @@ namespace Testing
 
         [Test]
         public void Test1()
-        {
-            Methods.OpenMobileClient(_config);
-            Methods.OpenApp("Inventory Inquiry");
-            InventoryInquiry.Test1();
-            //Methods.OpenApp("Cycle Count");
-            //Thread.Sleep(3000);
-            //CycleCount.test1();
+        {            
+            TestingApp.Test1(_config);
         }
-
-
+        
         [TearDown]
         public void TearDown()
         {
-            Assert.Pass();
+            driver.CloseApp();
+            driver.Quit();
         }
     }
 }

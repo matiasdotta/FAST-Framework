@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace FAST_Framework.Forms
 {
@@ -8,6 +9,7 @@ namespace FAST_Framework.Forms
     {
         public static void Select(string button) 
         {
+            Thread.Sleep(1000);
             Methods.ClickButtonByClass("Button", button);
             return;
         }
