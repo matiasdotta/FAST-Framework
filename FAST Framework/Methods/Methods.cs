@@ -253,6 +253,69 @@ namespace FAST_Framework
 
         
         #endregion
+        #region Display Message Controls
+        /// <summary>
+        /// Determines whether the message sent as paramater is the one on being shown.
+        /// </summary>
+        /// <param name="message">Message to check on the display message screen (Not case sensitive)</param>
+        /// <returns>Whether that message is the one being shown or not</returns>
+        public static bool IsDisplayMessage(string message)
+        {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+            try
+            {
+                var labels = driver.FindElementsByAccessibilityId("lblTransitionLabel");
+                foreach (var label in labels)
+                {
+                    if (label.Text.ToUpper().Contains(message.ToUpper()))
+                        return true;
+                }
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            
+        }
+
+        /// <summary>
+        /// Determines whether the current screen is a display message screen.
+        /// </summary>
+        /// <returns>Whether the current screen is a display message screen or not</returns>
+        public static bool IsDisplayMessage()
+        {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+            try
+            {
+                var labels = driver.FindElementsByAccessibilityId("lblTransitionLabel");
+                return (labels.Count > 0);
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
+        #endregion
+        #region Cursor Control
+        public static void ClickElement(WindowsElement elem, bool doubleClick = false)
+        {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+
+            Actions action = new Actions(driver);
+            action.MoveToElement(elem);
+            action.Perform();
+
+            if(!doubleClick)
+                action.Click();
+            else
+                action.DoubleClick();
+            action.Perform();
+        }
+        #endregion
         #endregion
     }
 
