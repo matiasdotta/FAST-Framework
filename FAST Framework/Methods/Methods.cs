@@ -10,6 +10,7 @@ namespace FAST_Framework
     public static class Methods
     {
         public static WindowsDriver<WindowsElement> driver = Driver.GetDriver();
+        private static int timeout;
 
         #region MC controls
 
@@ -22,6 +23,7 @@ namespace FAST_Framework
         {
             Driver.InitializeDriver(config);
             Login(config);
+            timeout = config.timeout;
         }
         public static void Login(Config config) {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
@@ -32,7 +34,6 @@ namespace FAST_Framework
             login.SendKeys(config.userName);
             pass.SendKeys(config.password);
             button.SendKeys(Keys.Enter);
-            return;
         }
 
         public static void ChangeMCConfig()
@@ -46,7 +47,7 @@ namespace FAST_Framework
         /// <param name="appName">Name or part of the name of the application</param>
         public static void OpenApp(string appName)
         {
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeout*2);
             try
             {
                 driver.SwitchTo().Window(driver.WindowHandles[0]);
@@ -79,7 +80,7 @@ namespace FAST_Framework
         public static void ClickButtonByClass(String className, string buttonText)
         {
             driver.SwitchTo().Window(driver.WindowHandles[0]);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeout);
             try
             {
                 var buttons = driver.FindElementsByClassName(className);
@@ -103,7 +104,7 @@ namespace FAST_Framework
         /// <param name="name"></param>
         public static void ClickImageButton(string name)
         {
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeout);
             var images = driver.FindElementsByClassName("Image");
             foreach (var image in images)
             {
@@ -119,7 +120,7 @@ namespace FAST_Framework
         /// </summary>
         public static void OpenMenu()
         {
-            driver.Manage().Timeouts().ImplicitWait = new TimeSpan(15);
+            driver.Manage().Timeouts().ImplicitWait = new TimeSpan(timeout);
             var images = driver.FindElementsByAccessibilityId("imgMenu");
             foreach (var image in images)
             {
@@ -160,7 +161,7 @@ namespace FAST_Framework
         /// <param name="texboxId">Text box automation ID from inspector</param>
         public static void EnterTextValue(string text, bool sendEnter, string texboxId = "txtPromptText")
         {
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeout);
             var textBox = driver.FindElementByAccessibilityId(texboxId);
             if (text == "")
             {
@@ -189,7 +190,7 @@ namespace FAST_Framework
         /// <returns></returns>
         public static string GetDisplayMessage()
         {
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeout);
             var message = driver.FindElementByAccessibilityId("lblTransitionLabel");
             return message.Text.ToString();
         }
@@ -200,7 +201,7 @@ namespace FAST_Framework
         /// <returns></returns>
         public static string GetValueFor(string field)
         {
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeout);
             var displayedInfo = driver.FindElementByAccessibilityId("lblInfo");
             var value = displayedInfo.Text.Split(field)[1];
             value = value.Split('\r')[0];
@@ -214,10 +215,9 @@ namespace FAST_Framework
         /// <param name="n">position of element</param>
         public static void ClickListItemByPos(int n)
         {
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeout);
             var ListItems = driver.FindElementsByClassName("ListViewItem");
             ListItems[n].Click();
-            return;
         }
         /// <summary>
         /// CLick a list item based on its name
@@ -225,12 +225,33 @@ namespace FAST_Framework
         /// <param name="name">Name value from inspector</param>
         public static void ClickListItemByName(string name)
         {
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeout);
+            var ListItem = driver.FindElementByName(name);
+            ListItem.Click();            
+        }
+
+        public static void OpenDropdown()
+        {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeout);
+            var dropdown = driver.FindElementByAccessibilityId("ddlDropdown");
+            dropdown.Click();
+        }
+
+        public static void ClickDropDownItemByName(string name)
+        {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeout);
             var ListItem = driver.FindElementByName(name);
             ListItem.Click();
-            return;
-            
         }
+
+        public static void ClickDropDownItemByPosition(int position)
+        {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(timeout);
+            var items = driver.FindElementsByClassName("ListBoxItem");
+            items[position].Click();
+        }
+
+        
         #endregion
         #endregion
     }

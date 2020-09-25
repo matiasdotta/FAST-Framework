@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace FAST_Framework.Forms
+namespace FAST_Framework.FormTemplates
 {
     public class Menu
     {

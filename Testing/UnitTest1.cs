@@ -24,6 +24,7 @@ namespace Testing
             _config.XLPath = @"..\..\..\TestCases.xlsx";
             _config.userName = "matias.dotta@ocloud.com";
             _config.password = "1Password!";
+            _config.timeout = 15;
             Methods.OpenMobileClient(_config);
             Methods.OpenApp("FAST Automation");
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
@@ -38,7 +39,7 @@ namespace Testing
         [Test]
         public void Test1()
         {            
-            TestingApp.Test1(_config);
+            TestingApp.Test3();
         }
         
         [TearDown]

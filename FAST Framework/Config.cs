@@ -27,6 +27,7 @@ namespace FAST_Framework
         public bool useHttps { get; set; }
         public bool communicationsActive { get; set; }
         #endregion
+        public int timeout { get; set; }
 
     }
 }

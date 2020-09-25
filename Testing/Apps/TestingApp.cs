@@ -1,5 +1,5 @@
 ﻿using FAST_Framework;
-using FAST_Framework.Forms;
+using FAST_Framework.FormTemplates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +40,7 @@ namespace Testing.Apps
                 //Date input defaulted
                 Prompt.PressNextButton();
                 //input multiple lines
-                lines = TestingApp.FormatNotes(notes);
+                lines = MultiPrompt.StringToList(notes);
                 Prompt.ImputMultipleLines(lines);
                 //continue
                 Prompt.PressNextButton();
@@ -56,21 +56,34 @@ namespace Testing.Apps
             return;
         }
 
-        public static List<string> FormatNotes(string notes)
+        public static void Test2(Config config)
         {
-            List<string> list = new List<string>();
-            
-            foreach (var note in notes.Split('\n'))
-            {
-                list.Add(note);                  
-            }
-            return list;
+            ExcelUtil.PopulateInCollection(config.XLPath);
+            int n = ExcelUtil.numberOfTests;
+
+            Menu.Select("Add Company Multi Prompt");
+            MultiPrompt.InputTextOnPrompNumber("asd 1111111111111", 1);
+            MultiPrompt.InputTextOnPrompNumber("asd 2222222222222", 2);
+            MultiPrompt.InputTextOnPrompNumber("asd 3333333333333", 3);
+            MultiPrompt.InputTextOnPrompNumber("asd 4444444444444", 4);
+            MultiPrompt.PressButtonByName("Continue");
+
+
+            //exit application
+            Methods.ExitApplication();
+            return;
         }
 
-        public static void Test2()
+
+
+        public static void Test3()
         {
-            Menu.Select("View Companies");
-            ListView.ClickItemByText("Name");
+            Menu.Select("Dropdown Companies");
+            Dropdown.OpenDropdown();
+            Dropdown.ClickItemNumber(1);
+            Dropdown.OpenDropdown();
+            Dropdown.ClickItemByText("Company 4");
+            Dropdown.PressNextButton();
             Methods.ExitApplication();
             return;
 

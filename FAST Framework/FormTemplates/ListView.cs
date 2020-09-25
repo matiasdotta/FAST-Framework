@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FAST_Framework.Forms
+namespace FAST_Framework.FormTemplates
 {
     public class ListView
     {
