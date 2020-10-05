@@ -93,9 +93,6 @@ C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\
 C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
 C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Drawing.Common.dll
-C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Drawing.Common.dll
 C:\Users\OwO\source\repos\FAST Framework\FAST Framework\obj\Debug\netcoreapp3.1\FAST Framework.csprojAssemblyReference.cache
 C:\Users\OwO\source\repos\FAST Framework\FAST Framework\obj\Debug\netcoreapp3.1\FAST Framework.AssemblyInfoInputs.cache
 C:\Users\OwO\source\repos\FAST Framework\FAST Framework\obj\Debug\netcoreapp3.1\FAST Framework.AssemblyInfo.cs
@@ -108,3 +105,17 @@ C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\
 C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\System.Text.Encoding.CodePages.dll
 C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Text.Encoding.CodePages.dll
 C:\Users\OwO\source\repos\FAST Framework\FAST Framework\obj\Debug\netcoreapp3.1\FAST Framework.csproj.CoreCompileInputs.cache
+C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\EPPlus.dll
+C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
+C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
+C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\OwO\source\repos\FAST Framework\FAST Framework\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Security.Cryptography.Pkcs.dll

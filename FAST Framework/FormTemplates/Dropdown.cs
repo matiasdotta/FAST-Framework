@@ -15,7 +15,7 @@ namespace FAST_Framework.FormTemplates
             Methods.ClickDropDownItemByPosition(n);
         }
 
-        public static void ClickItemByText(string name)
+        public static void ClickItemByName(string name)
         {
             Methods.ClickDropDownItemByName(name);
         }

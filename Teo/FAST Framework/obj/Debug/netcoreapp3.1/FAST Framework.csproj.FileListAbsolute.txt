@@ -1,0 +1,5 @@
+C:\Users\OwO\source\repos\FAST Framework\Teo\FAST Framework\obj\Debug\netcoreapp3.1\FAST Framework.csprojAssemblyReference.cache
+C:\Users\OwO\source\repos\FAST Framework\Teo\FAST Framework\obj\Debug\netcoreapp3.1\FAST Framework.csproj.ResolveComReference.cache
+C:\Users\OwO\source\repos\FAST Framework\Teo\FAST Framework\obj\Debug\netcoreapp3.1\FAST Framework.AssemblyInfoInputs.cache
+C:\Users\OwO\source\repos\FAST Framework\Teo\FAST Framework\obj\Debug\netcoreapp3.1\FAST Framework.AssemblyInfo.cs
+C:\Users\OwO\source\repos\FAST Framework\Teo\FAST Framework\obj\Debug\netcoreapp3.1\FAST Framework.csproj.CoreCompileInputs.cache

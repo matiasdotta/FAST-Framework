@@ -12,8 +12,9 @@ namespace Testing
 {
     public class Tests
     {
-        private Config _config = new Config();
-        private static WindowsDriver<WindowsElement> driver = Driver.GetDriver();
+        private readonly Config _config = new Config();
+        private static readonly WindowsDriver<WindowsElement> driver = Driver.GetDriver();
+        private readonly ExcelCellStyle cellStyle = new ExcelCellStyle(24, true, true);
         [SetUp]
         public void Setup()
         {
@@ -21,25 +22,19 @@ namespace Testing
             _config.driverPath = @"C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe";
             _config.MCPath = @"C:\Program Files (x86)\DSI\Mobile Client\DSI.MobileClient.PC.exe";
             _config.MCProcName = "DSI.MobileClient.PC";
-            _config.XLPath = @"..\..\..\TestCases.xlsx";
+            _config.XLPath = @"C:\Users\OwO\source\repos\FAST Framework\Testing\TestCases.xlsx";
             _config.userName = "matias.dotta@ocloud.com";
             _config.password = "1Password!";
-            _config.timeout = 15;
+            _config.timeout = 20;
             Methods.OpenMobileClient(_config);
             Methods.OpenApp("FAST Automation");
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-
-        }
-
-        public void OpenFile()
-        {
 
         }
 
         [Test]
         public void Test1()
         {            
-            TestingApp.Test3();
+            TestingApp.Test1(_config);
         }
         
         [TearDown]

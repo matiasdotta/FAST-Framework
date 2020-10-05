@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Appium.WebDriver" Version="4.1.1" />
+    <PackageReference Include="EPPlus" Version="5.3.2" />
     <PackageReference Include="ExcelDataReader" Version="3.6.0" />
     <PackageReference Include="ExcelDataReader.DataSet" Version="3.6.0" />
     <PackageReference Include="nunit" Version="3.12.0" />

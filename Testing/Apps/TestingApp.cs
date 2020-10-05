@@ -3,6 +3,7 @@ using FAST_Framework.FormTemplates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace Testing.Apps
@@ -11,7 +12,6 @@ namespace Testing.Apps
     {
         public static List<string> lines = new List<string>();
         
-
         public static void Test1(Config config)
         {
             ExcelUtil.PopulateInCollection(config.XLPath);
@@ -32,7 +32,7 @@ namespace Testing.Apps
                 //Read mesage
                 var DisplayedText = DisplayMessages.GetDisplayMessage();
                 //continue
-                DisplayMessages.PressButton();
+                DisplayMessages.CLickOkButton();
                 //Input for first prompt
                 Prompt.InputTextAndEnter(companyName);
                 //Input for secondPrompt
@@ -82,7 +82,7 @@ namespace Testing.Apps
             Dropdown.OpenDropdown();
             Dropdown.ClickItemNumber(1);
             Dropdown.OpenDropdown();
-            Dropdown.ClickItemByText("Company 4");
+            Dropdown.ClickItemByName("Company 4");
             Dropdown.PressNextButton();
             Methods.ExitApplication();
             return;

@@ -26,7 +26,6 @@ namespace FAST_Framework
             capabilities.AddAdditionalCapability("app", config.MCPath);
             capabilities.AddAdditionalCapability("deviceName", config.LocaldeviceName);
             driver = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), capabilities);
-            return;
         }
         //initialize driver using window handle
         public static void InitializeDriver(String WindowHandle)

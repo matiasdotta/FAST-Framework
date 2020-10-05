@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Drawing;
+using OfficeOpenXml.FormulaParsing.Excel;
 
 namespace FAST_Framework
 {
@@ -28,6 +30,42 @@ namespace FAST_Framework
         public bool communicationsActive { get; set; }
         #endregion
         public int timeout { get; set; }
+        public static class ExcelCellPredefinedStyles
+        {
+            public static ExcelCellStyle HeaderStyle = new ExcelCellStyle(16, true, false, Color.Black, Color.White);
+            public static ExcelCellStyle DefStyle = new ExcelCellStyle(12, false, false);
+        }
 
+        public class ExcelCellStyle
+        {
+            public int Size;
+            public bool Bold;
+            public bool Italic;
+            public Color BgColor;
+            public Color FontColor;
+
+            public ExcelCellStyle(int size, bool bold, bool italic, Color bgColor, Color fontColor)
+            {
+                this.Size = size;
+                this.Bold = bold;
+                this.Italic = italic;
+                this.BgColor = bgColor;
+                this.FontColor = fontColor;
+            }
+            public ExcelCellStyle(int size, bool bold, bool italic, Color fontColor)
+            {
+                this.Size = size;
+                this.Bold = bold;
+                this.Italic = italic;
+                this.FontColor = fontColor;
+            }
+            public ExcelCellStyle(int size, bool bold, bool italic)
+            {
+                this.Size = size;
+                this.Bold = bold;
+                this.Italic = italic;
+            }
+
+        }
     }
 }

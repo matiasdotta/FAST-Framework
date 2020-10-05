@@ -24,8 +24,8 @@ namespace FAST_Framework.FormTemplates
         public static bool IsDisplayMessage(string messageText = "")
         {
             if(messageText != "")
-                return Methods.IsDisplayMessage(messageText);
-            return Methods.IsDisplayMessage();
+                return true;
+            return false;
 
         }
 
